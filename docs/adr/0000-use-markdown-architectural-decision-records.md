@@ -2,7 +2,7 @@
 
 ## Context and Problem Statement
 
-We want to record architectural decisions made in Project Thoth. Which format and structure should these records follow?
+We want to record architectural decisions made in Operate First. Which format and structure should these records follow?
 
 ## Considered Options
 

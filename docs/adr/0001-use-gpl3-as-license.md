@@ -4,7 +4,7 @@ Everything needs to be licensed, otherwise the default copyright laws apply.
 For instance, in Germany that means users may not alter anything without explicitly asking for permission.
 For more information see <https://help.github.com/articles/licensing-a-repository/>.
 
-We want to have all source code related to Project Thoth to be used without any hassle and as free as possible, so that
+We want to have all source code related to Operate First to be used without any hassle and as free as possible, so that
 users can just [execute and enjoy the four freedoms](https://fsfe.org/freesoftware/freesoftware.en.html).
 
 ## Considered Options
