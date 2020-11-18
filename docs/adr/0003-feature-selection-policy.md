@@ -1,6 +1,6 @@
 # Users of an Operate First deployment might need different features than provided by upstream project's release
 
-* Status: proposed
+* Status: approved
 * Date: 2020-Nov-09
 
 ## Context and Problem Statement
