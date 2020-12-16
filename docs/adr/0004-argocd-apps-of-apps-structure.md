@@ -24,14 +24,16 @@ The Proposed Solution is captured by this diagram:
 
 ![image](https://user-images.githubusercontent.com/10904967/99705533-d8aac380-2a67-11eb-88e9-b63582271994.png)
 
-The idea here is that all our operate-first/team-1/team-2/.../team-n ArgoCD `Applications` would go in the `opf-argocd-apps` repo. Then we'd have an App of Apps i.e. the `OPF Parent App` that manages all these apps. This way we can add new applications declaratively to ArgoCD without having to make PR's to the `Infra Repo` (e.g. `moc-cnv-sandbox`). Operate-first admins would manage the `opf-argocd-app` repo. Any other ArgoCD `Applications` that manage cluster resources like `clusterrolebindings` or operator `subscriptions` etc. can remain in the infra repo since that's a concern for cluster admins. We would direct any _user_ that wants to use ArgoCD to manage their apps to add their ArgoCD `Applications` to the `opf-argocd-apps` repo. 
+The idea here is that all our operate-first/team-1/team-2/.../team-n ArgoCD `Applications` would go in the `opf-argocd-apps` repo. Then we'd have an App of Apps i.e. the `OPF Parent App` that manages all these apps. This way we can add new applications declaratively to ArgoCD without having to make PR's to the `Infra Repo` (e.g. `moc-cnv-sandbox`). Operate-first admins would manage the `opf-argocd-apps` repo. Any other ArgoCD `Applications` that manage cluster resources like `clusterrolebindings` or operator `subscriptions` etc. can remain in the infra repo since that's a concern for cluster admins. We would direct any _user_ that wants to use ArgoCD to manage their apps to add their ArgoCD `Applications` to the `opf-argocd-apps` repo. 
 
 ### Positive Consequences 
 - Infrastructure/cluster-admins are not bombarded with PR's for ArgoCD App onboarding 
 - OperateFirst maintainers can handle the PR's unhindered 
-- The "OPF-ArgoCD-Apps" repo can be leveraged by CRC/Quicklab/Other OCP Clusters to quickly setup ArgoCD ODH/Thoth/etc. Applications. 
+- The `opf-argocd-apps` repo can be leveraged by CRC/Quicklab/Other OCP Clusters to quickly setup ArgoCD ODH/Thoth/etc. Applications. 
 
 ### Negative Consequences 
-Biggest concern here is that there is no way to automatically enforce that Applications in `opf-argocd-apps` repo _belong_ to the `Operate First` ArgoCD project (see diagaram). _Why is this a problem?_ Because we use ArgoCD projects to restrict what types of resources applications _in that project can deploy_. For example ArgoCD apps in the `Infra Apps` project in the diagram can deploy `clusterrolebinding`, `operators`, etc. So while `OPF Parent App` cannot deploy `clusterrolebindings` because it belongs to the `Operate First` ArgoCD project, it could deploy another ArgoCD application that belongs to `Infra apps` and _that ArgoCD app_ could deploy clusterrolebindings. 
+Biggest concern here is that there is no way to automatically enforce that Applications in `opf-argocd-apps` repo _belong_ to the `Operate First` ArgoCD project (see diagram).
+
+_Why is this a problem?_ Because we use ArgoCD projects to restrict what types of resources applications _in that project_ can deploy. For example ArgoCD apps in the `Infra Apps` project in the diagram can deploy: `clusterrolebinding`, `operators`, etc. So while `OPF Parent App` cannot deploy `clusterrolebindings` because it belongs to the `Operate First` ArgoCD project, it could deploy another ArgoCD application that belongs to `Infra apps` and _that ArgoCD app_ could deploy clusterrolebindings. 
 
 You can read more about this [issue here](https://github.com/argoproj/argo-cd/issues/3045). The individual there used admission hooks to get around this but I don't think we want to go there just yet. My suggestion is we begin by enforcing this at the PR level, and transition to maybe catching this in CI until there's a proper solution upstream. 
