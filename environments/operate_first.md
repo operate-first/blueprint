@@ -14,16 +14,16 @@ We do not run a registry, but assume that quay.io is used for all released conta
 
 Run supporting tools to deploy, monitor and orchestrate the various environments. E.g. ArgoCD, external Monitoring, Ticket Management, etc.
 
-#### Hardware 
+#### Hardware
 
 14 VCPU, 64GB RAM, 1 TB storage
 
 ## Dev
 #### Use case
 
-Spin up experimental minimal OCP clusters to develop in an interactive environment. 
+Spin up experimental minimal OCP clusters to develop in an interactive environment.
 
-#### Hardware 
+#### Hardware
 
 [4 VCPU, 32GB RAM,  50 GB storage] / Dev Cluster
 
@@ -34,16 +34,16 @@ OSP Platform to provide this HW as virtual resources
 
 Run automated unit and integration tests. Build various assets, general tekton pipelines
 
-#### Hardware 
+#### Hardware
 
 64 VCPU,  512 GB RAM,  1.5 TB storage
 
 ## Stage N
 #### Use case
 
-Minimal replica of production environment with running test workloads. N implementations, depending on different platform configurations and different workloads. 
+Minimal replica of production environment with running test workloads. N implementations, depending on different platform configurations and different workloads.
 
-#### Hardware 
+#### Hardware
 
 [16 VCPU, 128GB RAM,  500 GB storage] / Stage Cluster
 
@@ -52,6 +52,6 @@ Minimal replica of production environment with running test workloads. N impleme
 
 Long-running stable environment to support end-user workloads.
 
-#### Hardware 
+#### Hardware
 
 128 VCPU,  2 TB RAM,  400 TB storage
