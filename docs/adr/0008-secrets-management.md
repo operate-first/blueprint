@@ -25,7 +25,7 @@ There exist many different solutions to tackle GitOps with secret management. Ar
 1) [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) - An operator that can decrypt a secret from a custom resource, this resource is stored in Git.
 2) [Hashicorp Vault](https://www.vaultproject.io/) - A server with a backing storage where secrets are stored.
 3) [KSOPS](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration) - A Kustomize plugin that uses [sops](https://github.com/mozilla/sops) to encrypt, the plugin itself adds a decryption generator step to the Kustomize build.
-4) Store secrets in a private/internal repo
+4) Store secrets in a private/internal repo.
 
 ## Decision Outcome
 Chosen Option `(3)`. Reasons are summarized as follows:
@@ -41,10 +41,10 @@ SOPS allows you to use various methods to encrypt your manifests, we opt to use 
 We will create a GPG key that we will use to encrypt all our manifests in Git. The secret key will be made available to ArgoCD and other operate-first admins. We offer the public key to other teams should they wish to encrypt their contents and store them in Git. Doing so will allow ArgoCD to decrypt and deploy their manifests. This means that other teams will be able to encrypt, but not decrypt, their manifests in Git. To get around this, SOPS allows you to encrypt the same files with multiple keys, allowing teams to encrypt a file using our Operate-First public key (where they do not have access to the private key) and their own key (for which they also have the private key). This will allow ArgoCD to decrypt their manifests, whilst also allowing teams to retain the ability to decrypt their manifests.
 
 ### Positive Consequences
-- Can store secrets in Git alongside other manifests
-- Compatible with Kustomize
+- Can store secrets in Git alongside other manifests.
+- Compatible with Kustomize.
 - SOPS allows us to configure specific confidential fields we want encrypted inside manifests, while keeping other information public.
-- ArgoCD can decrypt manifests
+- ArgoCD can decrypt manifests.
 - GPG key access, and SOPS configurations allow us to control who has encryption/decryption capabilities.
 
 ### Negative Consequences

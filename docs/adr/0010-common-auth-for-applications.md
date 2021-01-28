@@ -1,4 +1,4 @@
-# A common authentication for applications
+# Common Authentication for Applications
 
 - Status: accepted
 - Deciders: tumido, HumairAK, anishasthana, 4n4nd
@@ -18,7 +18,7 @@ Applications deployed within Operate First are run on top of OpenShift. Many app
 
 ## Considered Options
 
-1. Argo CD embedded Dex server
+1. ArgoCD embedded Dex server
 2. Standalone Dex server in a separate namespace
 3. Keycloak server via a Keycloak operator
 4. OpenShift Oauth server
@@ -45,18 +45,18 @@ Lives within the Argo CD deployment. Argo CD implements its own wrapper around D
 
 Dex server can provide OpenID identity, can connect to variety OpenID Connect identity sources connectors (Openshift, Github, Google, SSO providers, etc.) and since it's confined to its own namespace it allows for easier SRE as well as future expansion with client database for identity carry over between applications.
 
-- Good, because it already prepared and available and proved to work with Argo CD
-- Good, because it is a lightweight bridge solution to existing OpenID Connect providers
-- Bad, because it's not isolated to a separate namespace and doesn't allow full control over the Dex configuration
-- Bad, because the deployed Dex server version depends on what Dex version is packaged for Argo CD by Argo CD configurator wrapper
+- Good, because it is already prepared and available and proved to work with ArgoCD.
+- Good, because it is a lightweight bridge solution to existing OpenID Connect providers.
+- Bad, because it's not isolated to a separate namespace and doesn't allow full control over the Dex configuration.
+- Bad, because the deployed Dex server version depends on what Dex version is packaged for ArgoCD by ArgoCD configurator wrapper.
 
 ### Standalone Dex server in a separate namespace
 
-This option allows us to keep all the benefits of a Dex server without compromising Argo CD stability/reliability.
+This option allows us to keep all the benefits of a Dex server without compromising ArgoCD stability/reliability.
 
-- Good, because configuration is fully in our control as well as Dex version used
-- Good, because of the isolation, can be scaled and restricted by quotas
-- Good, because it is a lightweight bride solution to existing OpenID connect providers
+- Good, because configuration is fully in our control as well as Dex version used.
+- Good, because of the isolation, can be scaled and restricted by quotas.
+- Good, because it is a lightweight bride solution to existing OpenID connect providers.
 
 ### Standalone Dex server via an operator
 
