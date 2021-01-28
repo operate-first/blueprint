@@ -1,4 +1,4 @@
-# Declarative definitions for cluster scoped resources
+# Declarative Definitions for Cluster Scoped Resources
 
 - Status: accepted
 - Deciders: 4n4nd, anishasthana, HumairAK, tumido

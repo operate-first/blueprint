@@ -16,4 +16,9 @@ Architectural decisions
 * [ADR-0001](docs/adr/0001-use-gpl3-as-license.md) - Use GNU GPL as license
 * [ART-0003](docs/adr/0003-feature-selection-policy.md) - Users of an Operate First deployment might need different features than provided by upstream project's release
 * [ART-0004](docs/adr/0004-argocd-apps-of-apps-structure.md) - ArgoCD Apps of Apps Structure
-* [ART-0005](docs/adr/0005-support-multi-environments-in-repos.md) - Repositories supporting multiple environment deployments
+* [ART-0005](docs/adr/0005-support-multi-environments-in-repos.md) - Repositories Supporting Multiple Environment Deployments
+* [ART-0006](docs/adr/0006-monitoring-structure.md) - Application Monitoring using Prometheus
+* [ART-0007](docs/adr/0007-alerting-setup.md) - Alerting Setup for Monitoring
+* [ART-0008](docs/adr/0008-secrets-management.md) - GitOPS and Secrets Management
+* [ART-0009](docs/adr/0009-cluster-resources.md) - Declarative Definitions for Cluster Scoped Resources
+* [ART-0010](docs/adr/0010-common-auth-for-applications.md) - Common Authentication for Applications

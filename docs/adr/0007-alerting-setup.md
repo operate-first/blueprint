@@ -1,4 +1,4 @@
-# Alerting setup for Operate First monitoring
+# Alerting Setup for Operate First Monitoring
 
 * Status: accepted
 * Deciders: hemajv, 4n4nd, anishasthana, HumairAK, tumido, mhild
