@@ -1,4 +1,4 @@
-# Managing operators
+# Managing Operators
 
 - Status: accepted
 - Deciders: tumido, HumairAK, 4n4nd, anishasthana, larsks, martinpovolny
