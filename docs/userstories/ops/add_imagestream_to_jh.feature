@@ -1,8 +1,8 @@
 Feature: As an Ops person I need to provision a new ImageStream to JupyterHub on MOC
 
     Background:
-        Given I am a user of MOC-CNV
-        * I have access to JupyteHub on MOC-CNV
+        Given I am a user of MOC-ZERO
+        * I have access to JupyteHub on MOC-ZERO
 
     Scenario: Add the imagestream to the operate-first/apps repo
 
