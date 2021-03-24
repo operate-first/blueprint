@@ -1,32 +1,37 @@
-Feature: Increase PVC size in JupyterHub
+Feature: As an Ops person I want to increase size of a PVC in JupyterHub
 
     Background:
         Given I am a user of MOC-ZERO
-        * I have access to JupyteHub on MOC-ZERO
+        * I have access to manage JupyteHub on MOC-ZERO
+        * User (Requester) requested expansion of a PVC in [operate-first/support/](https://github.com/operate-first/support/)
+        * Requester is an user of MOC-ZERO
+        * Requester has access to JupyteHub on MOC-ZERO
 
-    Scenario: I use the default PVC
+    Scenario: Requester uses the default PVC
 
         This scenario is based on [PR243](https://github.com/operate-first/apps/pull/243) pull request.
 
-        Given I have no custom PVC resource for JupyteHub
+        Given Requester has no custom PVC resource for JupyteHub
 
-        When I update the templates/pvc-template.yaml with .metadata.annotations.hub\.jupyter\.org/username = USERNAME
+        When I update the templates/pvc-template.yaml with .metadata.annotations.hub\.jupyter\.org/username = Requestor's username
         * I update the templates/pvc-template.yaml with .metadata.name = jupyterhub-nb-URLENCODED_USERNAME-pvc
         * I update the templates/pvc-template.yaml with .spec.resources.requests.storage = DESIRED_SIZE
         * I encrypt the resource with SOPS
         * I add the PVC resource to https://github.com/operate-first/apps/tree/master/odh/overlays/moc/jupyterhub/pvcs/user-USERNAME-pvc.enc.yaml
         * I list the resource at https://github.com/operate-first/apps/tree/master/odh/overlays/moc/jupyterhub/pvcs/secret-generator.yaml
-        * I commit the updated file
-        * I restart my JupyterHub server
+        * I commit the updated file and open a PR
+        * PR is merged and changes applied by ArgoCD
+        * I restart requester's JupyterHub server
 
-        Then My PVC resource for JupyterHub is updated to DESIRED_SIZE
+        Then Requester's PVC resource for JupyterHub is updated to DESIRED_SIZE
 
-    Scenario: I already had a custom PVC defined
-        Given I have custom PVC resource for JupyteHub
+    Scenario: Requester already has a custom PVC defined
+        Given Requester has a custom PVC resource for JupyteHub declared at https://github.com/operate-first/apps/tree/master/odh/overlays/moc/jupyterhub/pvcs/user-USERNAME-pvc.enc.yaml
 
         When I fetch my PVC resource from https://github.com/operate-first/apps/tree/master/odh/overlays/moc/jupyterhub/pvcs/user-USERNAME-pvc.enc.yaml
         * I update the resource via SOPS with .spec.resources.requests.storage = DESIRED_SIZE
-        * I commit the updated file
-        * I restart my JupyterHub server
+        * I commit the updated file and open a PR
+        * PR is merged and changes applied by ArgoCD
+        * I restart requester's JupyterHub server
 
-        Then My PVC resource for JupyterHub is updated to DESIRED_SIZE
+        Then Requester's PVC resource for JupyterHub is updated to DESIRED_SIZE
