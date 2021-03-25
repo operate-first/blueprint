@@ -23,4 +23,5 @@ Architectural decisions
 * [ART-0009](docs/adr/0009-cluster-resources.md) - Declarative Definitions for Cluster Scoped Resources
 * [ART-0010](docs/adr/0010-common-auth-for-applications.md) - Common Authentication for Applications
 * [ART-0011](docs/adr/0011-operators.md) - Managing Operators
+* [ART-0012](docs/adr/0012-moc-infra-cluster-deployment-methods.md) - MOC Infra Cluster Deployment Methods
 * [ART-0013](docs/adr/0013-multicluster-environments.md) - Multi-Cluster Environments
