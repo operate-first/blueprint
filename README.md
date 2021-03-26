@@ -25,3 +25,4 @@ Architectural decisions
 * [ART-0011](docs/adr/0011-operators.md) - Managing Operators
 * [ART-0012](docs/adr/0012-moc-infra-cluster-deployment-methods.md) - MOC Infra Cluster Deployment Methods
 * [ART-0013](docs/adr/0013-multicluster-environments.md) - Multi-Cluster Environments
+* [ART-0014](docs/adr/0014-enforcing-resource-quotas.md) - Enforcing of Resource Quotas
