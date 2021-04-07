@@ -1,4 +1,5 @@
-Feature: As a user of MOC-ZERO I would like to access Jupyterhub on the MOC-ZERO cluster
+@data-scientist
+Feature: As data scientist I would like to access Jupyterhub on the MOC-ZERO cluster
 
     Scenario: Access JupyterHub on MOC-ZERO via MOC-SSO login
 
