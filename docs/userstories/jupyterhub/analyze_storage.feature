@@ -1,4 +1,5 @@
-Feature: As a user of JupyterHub I want to know how much local storage (PVC) I have
+@data-scientist
+Feature: As data scientist I want to know how much JupyterHub local storage (PVC) I have
 
     Background:
         Given I am a user of MOC-ZERO

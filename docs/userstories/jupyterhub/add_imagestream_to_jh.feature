@@ -1,4 +1,5 @@
-Feature: As an Ops person I need to provision a new ImageStream to JupyterHub on MOC
+@operations
+Feature: A operations I need to provision a new ImageStream to JupyterHub on MOC
 
     Background:
         Given I am a user of MOC-ZERO
