@@ -7,7 +7,7 @@ Feature: As data scientist I want to know how much JupyterHub local storage (PVC
 
     Scenario: Assess storage via Grafana dashboard
 
-        When I visit https://grafana-route-opf-monitoring.apps.zero.massopen.cloud/d/YuYfkHYMk/jupyterhub-usage?orgId=1
+        When I visit https://grafana-route-opf-monitoring.apps.zero.massopen.cloud/d/24cc5f554da78f3ca60a40f190f7e23203f7d847/jupyterhub-usage?orgId=1
         * I select "User ID" and pick my OCP user name
 
         Then the amount of free storage in my pvc can be assessed by inspecting the used/total space panel.
