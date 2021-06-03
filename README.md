@@ -26,4 +26,5 @@ Architectural decisions
 * [ART-0012](docs/adr/0012-moc-infra-cluster-deployment-methods.md) - MOC Infra Cluster Deployment Methods
 * [ART-0013](docs/adr/0013-multicluster-environments.md) - Multi-Cluster Environments
 * [ART-0014](docs/adr/0014-enforcing-resource-quotas.md) - Enforcing of Resource Quotas
-* [ART-0015](docs/adr/0015-cluster-resources-amendment.md) - Enforcing of Resource Quotas
+* [ART-0015](docs/adr/0015-cluster-resources-amendment.md) - Declarative Definitions for Cluster Scoped Resources - Addendum
+* [ART-0016](docs/adr/0016-pr-review.md) - Reviewing Pull Requests
