@@ -1,16 +1,11 @@
 # Operate First Blueprint
 
-This repository containers documentation of the Operate First Blueprint, it covers topics like architecture (incl.
-logical diagrams, documents of decisions taken), deployment (schema or physical diagrams).
+This section contains documentation of the Operate First Blueprint, covering the topics of architecture (including logical diagrams and documents of decisions taken) and the process to create deployments (including schema and physical diagrams).
 
-Architectural decisions
+Architectural Decisions
 -----------------------
 
-We keep track of architectural decisions using a lightweigh architectural decision records. More information on the
-used format is available at https://adr.github.io/madr/. General information about architectural decision records
-is available at https://adr.github.io/ .
-
-Architectural decisions
+[Architectural decisions](https://adr.github.io/) are design decisions with some level of architectural significance. At Operate First, we track architectural decisions using lightweight architectural decision records. More information on the format we follow is available at https://adr.github.io/madr/.
 
 * [ADR-0000](docs/adr/0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
 * [ADR-0001](docs/adr/0001-use-gpl3-as-license.md) - Use GNU GPL as license
@@ -29,3 +24,8 @@ Architectural decisions
 * [ADR-0015](docs/adr/0015-cluster-resources-amendment.md) - Declarative Definitions for Cluster Scoped Resources - Addendum
 * [ADR-0016](docs/adr/0016-pr-review.md) - Reviewing Pull Requests
 * [ADR-0017](docs/adr/0017-authentication-for-platform.md) - Authentication for all platform environments
+
+Continuous Delivery
+-------------------
+
+At Operate First, continuous delivery is a tool that uses source-to-image and Docker builds to containerize your application and provide you with an image to utilize in your deployment. Click [here](https://www.operate-first.cloud/blueprints/continuous-delivery/docs/continuous_delivery.md) to learn more about our vision of the continuous delivery concept.
