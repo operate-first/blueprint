@@ -24,6 +24,7 @@ Architectural Decisions
 * [ADR-0015](docs/adr/0015-cluster-resources-amendment.md) - Declarative Definitions for Cluster Scoped Resources - Addendum
 * [ADR-0016](docs/adr/0016-pr-review.md) - Reviewing Pull Requests
 * [ADR-0017](docs/adr/0017-authentication-for-platform.md) - Authentication for all platform environments
+* [ADR-0018](docs/adr/0018-migration-to-keycloak.md) - Authentication migration to Keycloak
 
 Continuous Delivery
 -------------------
