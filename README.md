@@ -25,6 +25,7 @@ Architectural Decisions
 * [ADR-0016](docs/adr/0016-pr-review.md) - Reviewing Pull Requests
 * [ADR-0017](docs/adr/0017-authentication-for-platform.md) - Authentication for all platform environments
 * [ADR-0018](docs/adr/0018-migration-to-keycloak.md) - Authentication migration to Keycloak
+* [ADR-0019](docs/adr/0019-org-management.md) - Maintaining GitHub organization as a code
 
 Continuous Delivery
 -------------------
