@@ -8,7 +8,7 @@ Technical Story: [issue-1](https://github.com/operate-first/odh-moc-support/issu
 
 ## Context and Problem Statement
 
-A full Git-Ops driven approach we decided to take in the previous ADRs makes us face additional challenges when deploying cluster scoped resources. Resources like `Namespace`, `Group`, `Subscription`, `CustomResourceDefinitions` etc. should be defined declaratively. They should be deployable via ArgoCD and allow users to use an optional encryption layer for sensitive properties/objects that may be considered a PII risk (see [`ADR 0008`](./0008-secrets-management.md)). Additionally the resulting layout should be flexible enough that migrating a project between clusters and/or extending the project to multiple clusters is simple enough.
+A full Git-Ops driven approach we decided to take in the previous ADRs makes us face additional challenges when deploying cluster scoped resources. Resources like `Namespace`, `Group`, `Subscription`, `CustomResourceDefinitions` etc. should be defined declaratively. They should be deployable via ArgoCD and allow users to use an optional encryption layer for sensitive properties/objects that may be considered a PII risk (see [`ADR 0008`](0008-secrets-management.md)). Additionally the resulting layout should be flexible enough that migrating a project between clusters and/or extending the project to multiple clusters is simple enough.
 
 ## Decision Drivers
 
