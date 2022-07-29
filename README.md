@@ -28,7 +28,7 @@ Architectural Decisions
 * [ADR-0019](adr/0019-org-management.md) - Maintaining GitHub organization as a code
 * [ADR-0020](adr/0020-service-catalog.md) - Provide a service catalog
 * [ADR-0021](adr/0021-sre-cloud-support.md) - Operate First Community Cloud support process
-
+* [ADR-0022](adr/0022-rules-for-entity-mapping-in-service-catalog.md) - Rules for entity mapping in Service Catalog
 
 Continuous Delivery
 -------------------
