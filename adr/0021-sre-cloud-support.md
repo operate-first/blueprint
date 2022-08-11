@@ -1,4 +1,4 @@
-# Provide a service catalog
+# Operate First Community Cloud support process
 
 * Status: accepted
 * Deciders: durandom
