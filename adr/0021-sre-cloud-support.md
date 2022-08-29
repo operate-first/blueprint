@@ -56,11 +56,17 @@ When on call, perform the following duties:
   * Operate First Slack #support, #operations, #general
   * Operate First Mailing list
   * Operate First Operations Repos (i.e, `apps`, `operations`)
+* Check status and notifications in the Operate First OCP console 
 * Be first responder to any issues, incidents, and other operational issues for services managed by SRE team
 * Follow documentations to resolve any issues, if no documentation and/or runbook exists, ensure they are updated once the issues are resolved
+* Document your topic work in the [on-call-log]
 * If the on call engineer does not know how to resolve an issue, and no documentation exist, the onus is on the on call engineer to reach out to the rest of the SRE team for assistance.
 * In the event on call engineer is assisted by another engineer, it is still the on call engineer's responsibility to ensure the resolution steps are fully documented in the form of a runbook, for the next on call engineer.
   * This is essential in helping break down knowledge silos
+* Handover (via call or chat)
+  * Inform the next on call engineer [on-call-log]
+  * Move checkbox
+  * If the current on call engineer is the last one on the list, shuffle the list in the [on-call-log] manually
 
 ### Off Call Duties
 
@@ -70,4 +76,5 @@ The only requirement for off call engineers is to offer sufficient support for o
 * there are no documents on how to resolve an issue
 
 [on-call-list]: https://github.com/operate-first/apps/blob/master/slack-first/overlays/moc/smaug/config.yaml#L4
+[on-call-log]: https://hackmd.io/SHcaWaXLS56Fo2Wr9cRfxg
 [docs]: https://www.operate-first.cloud/apps/CONTRIBUTING.html
