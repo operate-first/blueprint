@@ -26,6 +26,9 @@ Architectural Decisions
 * [ADR-0017](adr/0017-authentication-for-platform.md) - Authentication for all platform environments
 * [ADR-0018](adr/0018-migration-to-keycloak.md) - Authentication migration to Keycloak
 * [ADR-0019](adr/0019-org-management.md) - Maintaining GitHub organization as a code
+* [ADR-0020](adr/0020-service-catalog.md) - Provide a service catalog
+* [ADR-0021](adr/0021-sre-cloud-support.md) - Operate First Community Cloud support process
+
 
 Continuous Delivery
 -------------------
