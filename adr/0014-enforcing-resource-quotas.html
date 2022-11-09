@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Enforcing of Resource Quotas &#8212; Operate First - Blueprint</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Declarative Definitions for Cluster Scoped Resources" href="0015-cluster-resources-amendment.html" />
+    <link rel="prev" title="Cluster deployment methods" href="0013-multicluster-environments.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-178212082-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Blueprint</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Operate First Blueprint
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ADRs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0000-use-markdown-architectural-decision-records.html">
+   Use Markdown Architectural Decision Records
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0001-use-gpl3-as-license.html">
+   Use GNU GPL as license
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0003-feature-selection-policy.html">
+   Users of an Operate First deployment might need different features than provided by upstream project’s release
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0004-argocd-apps-of-apps-structure.html">
+   ArgoCD Apps of Apps Structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0005-support-multi-environments-in-repos.html">
+   Repositories Supporting Multiple Environment Deployments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0006-monitoring-structure.html">
+   Application Monitoring in Operate First using Prometheus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0007-alerting-setup.html">
+   Alerting Setup for Operate First Monitoring
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0008-secrets-management.html">
+   GitOPS and Secrets Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0009-cluster-resources.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0010-common-auth-for-applications.html">
+   Common Authentication for Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0011-operators.html">
+   Managing Operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0012-moc-infra-cluster-deployment-methods.html">
+   Cluster deployment methods for moc-infra cluster
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0013-multicluster-environments.html">
+   Cluster deployment methods
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Enforcing of Resource Quotas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0015-cluster-resources-amendment.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0016-pr-review.html">
+   Reviewing Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0017-authentication-for-platform.html">
+   Authentication for all platform environments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0018-migration-to-keycloak.html">
+   Authentication migration to Keycloak
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0019-org-management.html">
+   Maintaining GitHub organization as a code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0020-service-catalog.html">
+   Provide a service catalog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0021-sre-cloud-support.html">
+   Operate First Community Cloud support process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0022-rules-for-entity-mapping-in-service-catalog.html">
+   Rules for entity mapping in Service Catalog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Environments
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environments/operate_first.html">
+   Operate First Environment
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/blueprint"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/blueprint/issues/new?title=Issue%20on%20page%20%2Fadr/0014-enforcing-resource-quotas.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/adr/0014-enforcing-resource-quotas.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tiered-custom-resource-quotas">
+     1. Tiered &amp; Custom Resource quotas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros">
+     Pros:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cons">
+     Cons:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-resource-quotas">
+     2. Only Resource quotas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Pros:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Cons:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preferred-option">
+   Preferred option
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outcomes">
+   Outcomes
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Enforcing of Resource Quotas</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tiered-custom-resource-quotas">
+     1. Tiered &amp; Custom Resource quotas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros">
+     Pros:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cons">
+     Cons:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-resource-quotas">
+     2. Only Resource quotas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Pros:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Cons:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preferred-option">
+   Preferred option
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outcomes">
+   Outcomes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="enforcing-of-resource-quotas">
+<h1>Enforcing of Resource Quotas<a class="headerlink" href="#enforcing-of-resource-quotas" title="Permalink to this headline">#</a></h1>
+<p>Technical Story: <a class="reference external" href="https://github.com/operate-first/apps/issues/438">1</a>, <a class="reference external" href="https://github.com/operate-first/apps/pull/439">2</a></p>
+<section id="context-and-problem-statement">
+<h2>Context and Problem Statement<a class="headerlink" href="#context-and-problem-statement" title="Permalink to this headline">#</a></h2>
+<p>Currently clusters being managed by Operate-First are not enforcing quotas on compute and storage resources. This means that anyone can use their <code class="docutils literal notranslate"><span class="pre">namespace</span></code> to use hog as many resources as they wish. We should use Kubernetes’ <a class="reference external" href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">ResourceQuotas</a> to address this concern. Decisions for declaring quotas for resource <code class="docutils literal notranslate"><span class="pre">requests</span></code> and <code class="docutils literal notranslate"><span class="pre">limits</span></code> should be guided by monitoring current trends and usage via available dashboards. We will also need to add default <a class="reference external" href="https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/">LimitRanges</a> so current workloads are not prevented from creating resources.</p>
+</section>
+<section id="considered-options">
+<h2>Considered Options<a class="headerlink" href="#considered-options" title="Permalink to this headline">#</a></h2>
+<p>The only option is to use <a class="reference external" href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">ResourceQuotas</a>, what is subject to debate is how we organize/advertise these quotas in git.</p>
+<section id="tiered-custom-resource-quotas">
+<h3>1. Tiered &amp; Custom Resource quotas<a class="headerlink" href="#tiered-custom-resource-quotas" title="Permalink to this headline">#</a></h3>
+<p>We identify a tier of standard <code class="docutils literal notranslate"><span class="pre">ResourceQuotas</span></code> that we distribute to each namespace. We will adhere to this tiered system as much as possible, but acknowledge the need for custom quotas, and allow for such exceptions on a need basis. <code class="docutils literal notranslate"><span class="pre">ResourceQuotas</span></code> can be included as <code class="docutils literal notranslate"><span class="pre">Kustomize</span></code> components</p>
+</section>
+<section id="pros">
+<h3>Pros:<a class="headerlink" href="#pros" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>User friendly. It’s a lot easier to tell a new-comer to pick from a set of options then to specify specific requirements.</p></li>
+<li><p>Consistency. Tiers ensure that all new-comers are treated the same and any custom request is treated more carefully.</p></li>
+<li><p>Easy to propagate changes. For example, should we decide to update all <code class="docutils literal notranslate"><span class="pre">small</span></code> tier <code class="docutils literal notranslate"><span class="pre">ResourceQuotas</span></code>, we need only update one manifest in git.</p></li>
+</ul>
+</section>
+<section id="cons">
+<h3>Cons:<a class="headerlink" href="#cons" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>May result in waste of compute resources since we’re trying to fit various use cases into a small set of tiered options.</p></li>
+<li><p>Could get convoluted if custom <code class="docutils literal notranslate"><span class="pre">ResourceQuotas</span></code> manifests start drastically outnumbering the standard options.</p></li>
+</ul>
+</section>
+<section id="only-resource-quotas">
+<h3>2. Only Resource quotas<a class="headerlink" href="#only-resource-quotas" title="Permalink to this headline">#</a></h3>
+<p>No tier option, every namespace has a resource quota customized for their needs.</p>
+</section>
+<section id="id1">
+<h3>Pros:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Less likely to waste resources if tuned correctly for each namespace.</p></li>
+<li><p>There’s no confusion over when to use a tiered option or custom (since there’s only custom option)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Cons:<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Adds additional overhead to the on-boarding process, as now we require new-comers to assess their exact resource needs to fully benefit from this option.</p></li>
+<li><p>More resources to track and manage.</p></li>
+<li><p>Each admin can have their own view of what exact quota is necessary for a given project and this can lead to uncertainty and different quota based on who is serving the onboarding ticket.</p></li>
+</ul>
+</section>
+</section>
+<section id="preferred-option">
+<h2>Preferred option<a class="headerlink" href="#preferred-option" title="Permalink to this headline">#</a></h2>
+<p>Option 1 is preferred, due to the flexibility it offers. If it comes to the point where everyone is opting for <code class="docutils literal notranslate"><span class="pre">custom</span></code> quotas anyway, we can simply abandon the tier option.</p>
+</section>
+<section id="outcomes">
+<h2>Outcomes<a class="headerlink" href="#outcomes" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./adr"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="0013-multicluster-environments.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Cluster deployment methods</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="0015-cluster-resources-amendment.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Declarative Definitions for Cluster Scoped Resources</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Operate First<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Alerting Setup for Operate First Monitoring &#8212; Operate First - Blueprint</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GitOPS and Secrets Management" href="0008-secrets-management.html" />
+    <link rel="prev" title="Application Monitoring in Operate First using Prometheus" href="0006-monitoring-structure.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-178212082-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Blueprint</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Operate First Blueprint
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ADRs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0000-use-markdown-architectural-decision-records.html">
+   Use Markdown Architectural Decision Records
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0001-use-gpl3-as-license.html">
+   Use GNU GPL as license
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0003-feature-selection-policy.html">
+   Users of an Operate First deployment might need different features than provided by upstream project’s release
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0004-argocd-apps-of-apps-structure.html">
+   ArgoCD Apps of Apps Structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0005-support-multi-environments-in-repos.html">
+   Repositories Supporting Multiple Environment Deployments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0006-monitoring-structure.html">
+   Application Monitoring in Operate First using Prometheus
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Alerting Setup for Operate First Monitoring
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0008-secrets-management.html">
+   GitOPS and Secrets Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0009-cluster-resources.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0010-common-auth-for-applications.html">
+   Common Authentication for Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0011-operators.html">
+   Managing Operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0012-moc-infra-cluster-deployment-methods.html">
+   Cluster deployment methods for moc-infra cluster
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0013-multicluster-environments.html">
+   Cluster deployment methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0014-enforcing-resource-quotas.html">
+   Enforcing of Resource Quotas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0015-cluster-resources-amendment.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0016-pr-review.html">
+   Reviewing Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0017-authentication-for-platform.html">
+   Authentication for all platform environments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0018-migration-to-keycloak.html">
+   Authentication migration to Keycloak
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0019-org-management.html">
+   Maintaining GitHub organization as a code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0020-service-catalog.html">
+   Provide a service catalog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0021-sre-cloud-support.html">
+   Operate First Community Cloud support process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0022-rules-for-entity-mapping-in-service-catalog.html">
+   Rules for entity mapping in Service Catalog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Environments
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environments/operate_first.html">
+   Operate First Environment
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/blueprint"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/blueprint/issues/new?title=Issue%20on%20page%20%2Fadr/0007-alerting-setup.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/adr/0007-alerting-setup.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-drivers-optional">
+   Decision Drivers
+   <!-- optional -->
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-outcome">
+   Decision Outcome
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Alerting Setup for Operate First Monitoring</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-drivers-optional">
+   Decision Drivers
+   <!-- optional -->
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-outcome">
+   Decision Outcome
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="alerting-setup-for-operate-first-monitoring">
+<h1>Alerting Setup for Operate First Monitoring<a class="headerlink" href="#alerting-setup-for-operate-first-monitoring" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Status: accepted</p></li>
+<li><p>Deciders: hemajv, 4n4nd, anishasthana, HumairAK, tumido, mhild</p></li>
+</ul>
+<p>Technical Story: <a class="reference external" href="https://github.com/operate-first/SRE/issues/14">issue-1</a>, <a class="reference external" href="https://github.com/operate-first/SRE/issues/19">issue-2</a>, <a class="reference external" href="https://github.com/operate-first/blueprint/issues/16">issue-3</a></p>
+<section id="context-and-problem-statement">
+<h2>Context and Problem Statement<a class="headerlink" href="#context-and-problem-statement" title="Permalink to this headline">#</a></h2>
+<p>As we have multiple services/applications deployed and monitored in the Operate First environment (ex. Jupyterhub, Argo, Superset, Observatorium, Project Thoth, AICoE CI pipelines etc), we need to implement an incident reporting setup for handling outages/incidents related to these services.</p>
+<p>All the services are being monitored by <a class="reference external" href="https://prometheus.io/">Prometheus</a>. Prometheus scrapes and stores time series data identified by metric key/value pairs for each of the available services. These metrics can be used for measuring the service performance and alerting on any possible service degradation such as basic availability, latency, durability and any other applicable SLI/SLOs. These SLI/SLOs for the various services are defined and documented in the <a class="reference external" href="https://github.com/operate-first/SRE/tree/master/sli-slo">SRE repository</a>.</p>
+<p>Alerting with Prometheus is separated into two parts. Alerting rules in Prometheus servers send alerts to an <a class="reference external" href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a>. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.</p>
+<p>Whether its a major bug, capacity issues, or an outage, users depending on the services expect an immediate response. Having an efficient incident management process is critical in ensuring that the incidents are always communicated to the users (via on-call notification systems) and handled by the team immediately. An on-call notification system is a system/software that provides an automated means of contacting users and communicating pertinent information during an incident. It also has additional on-call scheduling features that can be used to ensure that the right people on the team are available to address a problem during an incident. There are multiple on-call notification systems such as <a class="reference external" href="https://www.pagerduty.com/">PagerDuty</a>, <a class="reference external" href="https://www.atlassian.com/software/jira">JIRA</a> etc that can be used for incident reporting, but which of these tools are best suitable for reporting the outages/incidents to our users?</p>
+</section>
+<section id="decision-drivers-optional">
+<h2>Decision Drivers <!-- optional --><a class="headerlink" href="#decision-drivers-optional" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Visibility of incident reporting</p>
+<ul>
+<li><p>How can the incidents be tracked and reported in an open and transparent manner for our users?</p></li>
+</ul>
+</li>
+<li><p>Compatibility with Prometheus</p>
+<ul>
+<li><p>Is the incident reporting tool compatible with Prometheus i.e. can it handle/receive Prometheus alerts?</p></li>
+</ul>
+</li>
+<li><p>Complexity and cost of incident reporting tool</p>
+<ul>
+<li><p>How easy/hard is it to manage and operate the incident reporting tool?</p></li>
+<li><p>Is it a free or paid tool?</p></li>
+<li><p>Is it open source?</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="considered-options">
+<h2>Considered Options<a class="headerlink" href="#considered-options" title="Permalink to this headline">#</a></h2>
+<ul>
+<li><p>Option 1:</p>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://www.pagerduty.com/">PagerDuty</a> which is a popular paid on-call management and incident response platform</p></li>
+</ul>
+</li>
+<li><p>Option 2:</p>
+<ul class="simple">
+<li><p>Use open source tools like:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/arachnys/cabot">Cabot</a> - Python/Djano based monitoring platform</p></li>
+<li><p><a class="reference external" href="https://github.com/openduty/openduty">OpenDuty</a> - Incident escalation tool similar to PagerDuty</p></li>
+<li><p><a class="reference external" href="https://github.com/Netflix/dispatch">Dispatch</a> - Incident management tool by Netflix</p></li>
+<li><p><a class="reference external" href="https://github.com/monzo/response">Response</a> - Django based incident management tool</p></li>
+</ul>
+</li>
+</ul>
+<p>which are free, self-hosted infrastructure that provides some of the best features of PagerDuty, Pingdom etc without their cost and complexity</p>
+</li>
+<li><p>Option 3:</p>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://github.com/m-lab/alertmanager-github-receiver">GitHub Alertmanager receiver</a> which is a Prometheus Alertmanager webhook receiver that creates GitHub issues from alerts</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="decision-outcome">
+<h2>Decision Outcome<a class="headerlink" href="#decision-outcome" title="Permalink to this headline">#</a></h2>
+<p>Chosen option: <strong>Option 3</strong>, because:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.com/m-lab/alertmanager-github-receiver">GitHub alertmanager receiver</a> can easily be configured and operated to function with Prometheus alerts. It automatically creates issues in GitHub repositories for any active alerts being fired, making it visible for any user to track</p></li>
+<li><p>All communication/updates/concerns related to the incident can be easily handled by adding comments in the issues created by the GitHub receiver</p></li>
+<li><p>Unlike Option 1, there is no additional cost involved</p></li>
+<li><p>There is no requirement for using JIRA/Slack for incident tracking, which are the only supported options in some of the tools listed in Option 2 (such as <a class="reference external" href="https://github.com/Netflix/dispatch">Dispatch</a> and <a class="reference external" href="https://github.com/monzo/response">Response</a>) In any case that such a requirement surfaces, we can use GitHub bots for different platforms such as <a class="reference external" href="https://slack.github.com/">GitHub for Slack</a> and <a class="reference external" href="https://support.google.com/chat/answer/9632291?co=GENIE.Platform%3DAndroid&amp;hl=en">Google Chat</a> to notify us of the issues immediately</p></li>
+<li><p>It is actively being maintained and supported compared to some of the tools in Option 1 (such as <a class="reference external" href="https://github.com/arachnys/cabot">Cabot</a> and <a class="reference external" href="https://github.com/openduty/openduty">OpenDuty</a>) which lack community support</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./adr"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="0006-monitoring-structure.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Application Monitoring in Operate First using Prometheus</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="0008-secrets-management.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GitOPS and Secrets Management</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Operate First<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

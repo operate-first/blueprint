@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Managing Operators &#8212; Operate First - Blueprint</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cluster deployment methods for moc-infra cluster" href="0012-moc-infra-cluster-deployment-methods.html" />
+    <link rel="prev" title="Common Authentication for Applications" href="0010-common-auth-for-applications.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-178212082-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Operate First - Blueprint</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Operate First Blueprint
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ADRs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0000-use-markdown-architectural-decision-records.html">
+   Use Markdown Architectural Decision Records
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0001-use-gpl3-as-license.html">
+   Use GNU GPL as license
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0003-feature-selection-policy.html">
+   Users of an Operate First deployment might need different features than provided by upstream project’s release
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0004-argocd-apps-of-apps-structure.html">
+   ArgoCD Apps of Apps Structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0005-support-multi-environments-in-repos.html">
+   Repositories Supporting Multiple Environment Deployments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0006-monitoring-structure.html">
+   Application Monitoring in Operate First using Prometheus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0007-alerting-setup.html">
+   Alerting Setup for Operate First Monitoring
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0008-secrets-management.html">
+   GitOPS and Secrets Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0009-cluster-resources.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0010-common-auth-for-applications.html">
+   Common Authentication for Applications
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Managing Operators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0012-moc-infra-cluster-deployment-methods.html">
+   Cluster deployment methods for moc-infra cluster
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0013-multicluster-environments.html">
+   Cluster deployment methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0014-enforcing-resource-quotas.html">
+   Enforcing of Resource Quotas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0015-cluster-resources-amendment.html">
+   Declarative Definitions for Cluster Scoped Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0016-pr-review.html">
+   Reviewing Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0017-authentication-for-platform.html">
+   Authentication for all platform environments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0018-migration-to-keycloak.html">
+   Authentication migration to Keycloak
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0019-org-management.html">
+   Maintaining GitHub organization as a code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0020-service-catalog.html">
+   Provide a service catalog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0021-sre-cloud-support.html">
+   Operate First Community Cloud support process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0022-rules-for-entity-mapping-in-service-catalog.html">
+   Rules for entity mapping in Service Catalog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Environments
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environments/operate_first.html">
+   Operate First Environment
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/operate-first/blueprint"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/operate-first/blueprint/issues/new?title=Issue%20on%20page%20%2Fadr/0011-operators.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/adr/0011-operators.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-drivers">
+   Decision Drivers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-outcome">
+   Decision Outcome
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operator-lifecycle-manager-compatible-operators">
+     Operator Lifecycle Manager compatible operators
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cluster-service-version">
+       Cluster service version
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#catalog-source">
+       Catalog source
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#subscription">
+       Subscription
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-plan">
+       Install plan
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#operator-groups">
+       Operator groups
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#direct-operator-deployment">
+     Direct operator deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meta-operators">
+     Meta-operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positive-consequences">
+     Positive Consequences
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-consequences">
+     Negative Consequences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pros-and-cons-of-the-options">
+   Pros and Cons of the Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-all-operator-related-resources-within-cluster-scope-application">
+     Deploy all operator-related resources within
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cluster-scope
+      </span>
+     </code>
+     application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#require-all-namespaced-resources-to-be-deployed-within-individual-applications-outside-of-cluster-scope">
+     Require all namespaced resources to be deployed within individual applications, outside of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cluster-scope
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-balance-between-1-and-2">
+     Find balance between 1. and 2.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#links">
+   Links
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Managing Operators</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context-and-problem-statement">
+   Context and Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-drivers">
+   Decision Drivers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#considered-options">
+   Considered Options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-outcome">
+   Decision Outcome
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operator-lifecycle-manager-compatible-operators">
+     Operator Lifecycle Manager compatible operators
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cluster-service-version">
+       Cluster service version
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#catalog-source">
+       Catalog source
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#subscription">
+       Subscription
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-plan">
+       Install plan
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#operator-groups">
+       Operator groups
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#direct-operator-deployment">
+     Direct operator deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meta-operators">
+     Meta-operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positive-consequences">
+     Positive Consequences
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-consequences">
+     Negative Consequences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pros-and-cons-of-the-options">
+   Pros and Cons of the Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-all-operator-related-resources-within-cluster-scope-application">
+     Deploy all operator-related resources within
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cluster-scope
+      </span>
+     </code>
+     application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#require-all-namespaced-resources-to-be-deployed-within-individual-applications-outside-of-cluster-scope">
+     Require all namespaced resources to be deployed within individual applications, outside of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cluster-scope
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-balance-between-1-and-2">
+     Find balance between 1. and 2.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#links">
+   Links
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="managing-operators">
+<h1>Managing Operators<a class="headerlink" href="#managing-operators" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Status: accepted</p></li>
+<li><p>Deciders: tumido, HumairAK, 4n4nd, anishasthana, larsks, martinpovolny</p></li>
+<li><p>Date: 2021-01-27</p></li>
+</ul>
+<p>Technical Story: <a class="reference external" href="https://github.com/operate-first/apps/issues/126">issue-1</a>, <a class="reference external" href="https://github.com/operate-first/apps/pull/131">pr-1</a>, <a class="reference external" href="https://github.com/operate-first/apps/pull/153">pr-2</a></p>
+<section id="context-and-problem-statement">
+<h2>Context and Problem Statement<a class="headerlink" href="#context-and-problem-statement" title="Permalink to this headline">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application definition introduced by <a class="reference internal" href="0010-common-auth-for-applications.html"><span class="doc std std-doc">ADR 0010</span></a> is a bit vague for use cases like deploying operators. Operator Lifecycle Manager (OLM) defines a resource overlap where a single resource kind can be used in different contexts. For example, Subscription resource can subscribe to a specific operator which can be either cluster-scoped or namespace-scoped. This may go against the distinction introduced in <a class="reference internal" href="0010-common-auth-for-applications.html"><span class="doc std std-doc">ADR 0010</span></a>. This document provides guidance on how each of the resource kinds for OLM should be treated in each context and usage variant we aim to support.</p>
+</section>
+<section id="decision-drivers">
+<h2>Decision Drivers<a class="headerlink" href="#decision-drivers" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The definition of a <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application at <a class="reference internal" href="0010-common-auth-for-applications.html"><span class="doc std std-doc">ADR 0010</span></a> does not provide enough guidance for OLM.</p></li>
+<li><p>Various OLM resources can be used in a way which effects the whole cluster or in a way that limits the effects to a single namespace.</p></li>
+<li><p>Various OLM resources have permission restrictions or behave as a singletons within a namespace.</p></li>
+<li><p>Some operators are not deployed via OLM, yet they behave as operators across all namespaces. Placement of those manifests is also disputed.</p></li>
+<li><p>How should we handle meta-operators which operate across all namespaces and deploy other operators that operate across all namespaces?</p></li>
+</ul>
+</section>
+<section id="considered-options">
+<h2>Considered Options<a class="headerlink" href="#considered-options" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Deploy all operator-related resources within <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application.</p></li>
+<li><p>Require all namespaced resources to be deployed within individual applications, outside of <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code>.</p></li>
+<li><p>Find balance between 1. and 2. Deploy resources which have effect on a cluster level within <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> app (also the namespace-scoped ones). The rest is deployed in individual applications.</p></li>
+</ol>
+</section>
+<section id="decision-outcome">
+<h2>Decision Outcome<a class="headerlink" href="#decision-outcome" title="Permalink to this headline">#</a></h2>
+<p>Chosen option: <em>“3. Find balance between 1. and 2.”</em>, because it is desired to keep track of all resources which may effect other users and other namespaces i.e. operators provisioned to manage all cluster namespaces.</p>
+<p>Proposed decision defines strict rules for given resources. These rules are subject to future updates if needed, but the repositories and applications are required to consistently enforce them:</p>
+<section id="operator-lifecycle-manager-compatible-operators">
+<h3>Operator Lifecycle Manager compatible operators<a class="headerlink" href="#operator-lifecycle-manager-compatible-operators" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://docs.openshift.com/container-platform/4.6/operators/understanding/olm/olm-understanding-olm.html">Operator Lifecycle Manager</a> defines following resource kinds:</p>
+<ul class="simple">
+<li><p>Cluster service version</p></li>
+<li><p>Catalog source</p></li>
+<li><p>Subscription</p></li>
+<li><p>Install plan</p></li>
+<li><p>Operator groups</p></li>
+</ul>
+<p>These are the set of guidelines we want to enforce on them:</p>
+<section id="cluster-service-version">
+<h4>Cluster service version<a class="headerlink" href="#cluster-service-version" title="Permalink to this headline">#</a></h4>
+<p>This resource is not meant to be deployed manually and is expected to be provided from a <em>Catalog source</em>. If there’s really a need to deploy a custom <em>Cluster service version</em>, the resource has to live within the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application.</p>
+</section>
+<section id="catalog-source">
+<h4>Catalog source<a class="headerlink" href="#catalog-source" title="Permalink to this headline">#</a></h4>
+<p>It is uncommon for a <em>Catalog source</em> to be declared manually. Operators are expected to be provisioned from the default catalogs and it is advised to publish the desired operator to a community catalog rather than deploying a custom <em>Catalog source</em>. If it is necessary to deploy an additional <code class="docutils literal notranslate"><span class="pre">CatalogSource</span></code> resource, this resource must be deployed to the <code class="docutils literal notranslate"><span class="pre">openshift-marketplace</span></code> namespace and therefore must be declared within the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application.</p>
+</section>
+<section id="subscription">
+<h4>Subscription<a class="headerlink" href="#subscription" title="Permalink to this headline">#</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">Subscription</span></code> resource is a namespace-scoped resource. It is effectively responsible for the operator deployment. Therefore we recognise 2 possible scenarios and use cases for this resource:</p>
+<ol>
+<li><p>A namespaced operator with a single namespace visibility:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Subscription</span></code> resource can be hosted along with application manifests in an application repository. This application has to be deployed to the same namespace as specified for the subscription.</p>
+</li>
+<li><p>An operator with all namespaces visibility:</p>
+<p>For operators with global effect, we expect the <code class="docutils literal notranslate"><span class="pre">Subscription</span></code> resource to be hosted in <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application only.</p>
+</li>
+</ol>
+<p>Deciding which namespace the OLM resources should reside for global operators will be done on a case-by-case basis. In general, the rule of thumb is to put them in <code class="docutils literal notranslate"><span class="pre">openshift-operators</span></code>, however we take note that there may be various exceptions to this rule (e.g. ClusterLogging, OpenShift Metering, etc.).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Subscription</span></code> resource manifest is expected to be deployed to the same namespace where the corresponding <code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> is located.</p>
+</section>
+<section id="install-plan">
+<h4>Install plan<a class="headerlink" href="#install-plan" title="Permalink to this headline">#</a></h4>
+<p>Operators are not expected to deploy a custom <em>Install plan</em>. We expect every plan to be provided by the <em>Cluster service version</em> resource belonging to the given operator.</p>
+</section>
+<section id="operator-groups">
+<h4>Operator groups<a class="headerlink" href="#operator-groups" title="Permalink to this headline">#</a></h4>
+<p>An <code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> resource is a namespace-scoped resource. However we require this resource to be placed in the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application only, this is due to the following reasons:</p>
+<ol class="simple">
+<li><p>This resource is a singleton in namespace context. There can’t be multiple instances of the said resource in the same namespace, even if the name differs.</p></li>
+<li><p>When deployed it generates <code class="docutils literal notranslate"><span class="pre">ClusterRole</span></code> and <code class="docutils literal notranslate"><span class="pre">ClusterRoleBinding</span></code> and aggregation rules.</p></li>
+<li><p>It can specify all namespaces visibility for an operator.</p></li>
+<li><p>By default project admins do not have create/edit rights to <code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code>s (due to points 2 and 3), so only cluster-admins can manage <em>Operator groups</em>.</p></li>
+</ol>
+<p>There are a number <a class="reference external" href="https://github.com/operator-framework/operator-lifecycle-manager/blob/master/doc/design/operatorgroups.md#what-can-go-wrong">of possible conflicts</a> that are a direct consequence of an <code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> deployment. These resources need to be treated carefully and therefore it is required for them to be placed and maintained at <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application level.</p>
+<p>Centralized <code class="docutils literal notranslate"><span class="pre">Operator</span> <span class="pre">Group</span></code> management ensures we won’t be deploying the same namespaced operator while we already have another instance with all namespace visibility, etc.</p>
+<p>According to the upstream documentation on <a class="reference external" href="https://docs.openshift.com/container-platform/4.6/operators/understanding/olm/olm-understanding-operatorgroups.html#olm-operatorgroups-target-namespace_olm-understanding-operatorgroups"><code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> target namespace selection</a> we enforce and support only these options for target namespace specification in <em>Operator groups</em> specification:</p>
+<ol class="simple">
+<li><p>A global, cluster-wide operator with visibility to all namespaces, that means the <code class="docutils literal notranslate"><span class="pre">.spec</span></code> section of the manifest is blank.</p></li>
+<li><p>A single namespace operator. Resource manifest specifies <code class="docutils literal notranslate"><span class="pre">.spec.targetNamespaces:</span> <span class="pre">[</span> <span class="pre">SINGLE_MEMBER_NAMESPACE</span> <span class="pre">]</span></code>. This namespace has to be deployed via <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application as well.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> resource manifest is expected to be deployed to the same namespace where the corresponding <code class="docutils literal notranslate"><span class="pre">Subscription</span></code> is located.</p>
+</section>
+</section>
+<section id="direct-operator-deployment">
+<h3>Direct operator deployment<a class="headerlink" href="#direct-operator-deployment" title="Permalink to this headline">#</a></h3>
+<p>Some operators are not deployed via the OLM. That means, their manifests require manual deployment of <code class="docutils literal notranslate"><span class="pre">CustomResourceDefinition</span></code>s, <code class="docutils literal notranslate"><span class="pre">ClusterRole</span></code>s etc. We require this kind of resources to be deployed via <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application.</p>
+<p>In contrast to that, all the other resources required for a non-OLM operator deployment, like <code class="docutils literal notranslate"><span class="pre">Deployment</span></code>, <code class="docutils literal notranslate"><span class="pre">Route</span></code> etc. are treated as any other namespace scoped application and all the manifests required for deployment are expected to be located as a separate application in the <code class="docutils literal notranslate"><span class="pre">operate-first/apps</span></code> repository as a root folder.</p>
+</section>
+<section id="meta-operators">
+<h3>Meta-operators<a class="headerlink" href="#meta-operators" title="Permalink to this headline">#</a></h3>
+<p>This is a special kind of operator. A meta-operator in this context is understood to be any operator allowing deployment of other operators at cluster scope. Our intention is to limit the possibilities of such operator to be able to interfere with our cluster management in <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application. We expect meta-operators to provide options to either:</p>
+<ul class="simple">
+<li><p>Limit their permissions via operator configuration, so they are not able to deploy resources requiring cluster-admin permissions.</p></li>
+<li><p>Limit the create/edit access permission to the custom resources they create, in order to limit normal project users or project admins from escalating their privileges.</p></li>
+</ul>
+<p>If it is not possible to deploy a meta-operator in a way that respects one of the 2 conditions, it is expected from the operator requester to raise this issue upstream. Until this is fixed we expect the operator to be installed manually via <a class="reference external" href="#direct-operator-deployment">Direct operator deployment</a>, not via OLM framework, therefore allowing us to manually control the custom resource access permissions for regular users or the operator service account <code class="docutils literal notranslate"><span class="pre">ClusterRole</span></code>.</p>
+</section>
+<section id="positive-consequences">
+<h3>Positive Consequences<a class="headerlink" href="#positive-consequences" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Clear guidance on each and individual resource regarding operators, which may appear confusing without such rules.</p></li>
+<li><p>Allows operator to be treated like normal applications in case they are deployed manually. This will not clutter the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> applicaton anymore.</p></li>
+<li><p>Enforces restrictions that prevent user privilege escalation via meta-operators.</p></li>
+</ul>
+</section>
+<section id="negative-consequences">
+<h3>Negative Consequences<a class="headerlink" href="#negative-consequences" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Complex set of rules all cluster-admins have to follow and fully understand.</p></li>
+</ul>
+</section>
+</section>
+<section id="pros-and-cons-of-the-options">
+<h2>Pros and Cons of the Options<a class="headerlink" href="#pros-and-cons-of-the-options" title="Permalink to this headline">#</a></h2>
+<section id="deploy-all-operator-related-resources-within-cluster-scope-application">
+<h3>Deploy all operator-related resources within <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application<a class="headerlink" href="#deploy-all-operator-related-resources-within-cluster-scope-application" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Good, because it is very easy to implement.</p></li>
+<li><p>Good, because it makes the rules very clear for the users - If you want an operator, it needs to live here every time.</p></li>
+<li><p>Bad, because it is impossible to achieve for meta-operators like ODH.</p></li>
+<li><p>Bad, because it is hard to maintain, since some (especially namespaced) operators may be owned by different teams.</p></li>
+<li><p>Bad, because the amount of resources deployed by the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application may increase drastically.</p></li>
+<li><p>Bad, because it doesn’t solve meta-operators access - their custom resources can be used to deploy operators on cluster scope anyways.</p></li>
+</ul>
+</section>
+<section id="require-all-namespaced-resources-to-be-deployed-within-individual-applications-outside-of-cluster-scope">
+<h3>Require all namespaced resources to be deployed within individual applications, outside of <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code><a class="headerlink" href="#require-all-namespaced-resources-to-be-deployed-within-individual-applications-outside-of-cluster-scope" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Good, because it is very easy to implement.</p></li>
+<li><p>Good, because it doesn’t require complex rules to follow for the users.</p></li>
+<li><p>Bad, because it is impossible to achieve for meta-operators like ODH.</p></li>
+<li><p>Bad, because some namespace-scoped resources are required to be unique to the said namespace.</p></li>
+<li><p>Bad, because some namespace-scoped resources can grant access to an operator at cluster scope level.</p></li>
+</ul>
+</section>
+<section id="find-balance-between-1-and-2">
+<h3>Find balance between 1. and 2.<a class="headerlink" href="#find-balance-between-1-and-2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Good, because we can weight each resource kind separately and decide based on the context and use case.</p></li>
+<li><p>Good, because it allows us keep the <code class="docutils literal notranslate"><span class="pre">cluster-scope</span></code> application at a reasonable size.</p></li>
+<li><p>Good, because it gives enough control to individual application/project owners when they want to deploy namespaced operators.</p></li>
+<li><p>Bad, because it requires complex rules and full understanding of the resources by the systems integrators who want to provision an operator.</p></li>
+</ul>
+</section>
+</section>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Adds further detail to a specific usecase for <a class="reference internal" href="0010-common-auth-for-applications.html"><span class="doc std std-doc">ADR 0010</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.openshift.com/container-platform/4.6/operators/understanding/olm/olm-understanding-olm.html">Operator Lifecycle Manager</a> concepts</p></li>
+<li><p><a class="reference external" href="https://github.com/operator-framework/operator-lifecycle-manager/blob/master/doc/design/operatorgroups.md"><code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> design document</a></p></li>
+<li><p><a class="reference external" href="https://docs.openshift.com/container-platform/4.6/operators/understanding/olm/olm-understanding-operatorgroups.html#olm-operatorgroups-target-namespace_olm-understanding-operatorgroups"><code class="docutils literal notranslate"><span class="pre">OperatorGroup</span></code> target namespace selection</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./adr"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="0010-common-auth-for-applications.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Common Authentication for Applications</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="0012-moc-infra-cluster-deployment-methods.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cluster deployment methods for moc-infra cluster</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Operate First<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
