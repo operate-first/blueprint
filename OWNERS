@@ -3,6 +3,9 @@
 approvers:
   - durandom
   - goern
-
+emeritus_approvers:
+  - 4n4nd  # jun 2022
+  - HumairAK   # dec 2022
+  - tumido  # april 2023
 reviewers:
   - harshad16
