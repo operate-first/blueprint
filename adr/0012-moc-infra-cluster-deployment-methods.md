@@ -1,5 +1,9 @@
 # Cluster deployment methods for moc-infra cluster
 
+* Status: deprecated, no-longer-relevant
+* Deciders: goern
+* Date: 2023-04-25
+
 ## Context and Problem Statement
 
 This document suggests options for the preferred deployment method for the **moc-infra cluster** at the MOC(Mass Open Cloud). This hub cluster will be the central OpenShift cluster to manage and deploy other clusters on-demand.

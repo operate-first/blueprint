@@ -1,8 +1,8 @@
 # Operate First Community Cloud support process
 
-* Status: accepted
-* Deciders: durandom
-* Date: 2022-07-25
+* Status: deprecated, no-longer-relevant
+* Deciders: goern
+* Date: 2023-04-25
 
 Technical Story: https://github.com/open-services-group/scrum/issues/4
 

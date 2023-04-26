@@ -1,17 +1,11 @@
 # See the OWNERS docs at https://go.k8s.io/owners
 
 approvers:
-  - 4n4nd
-  - HumairAK
-  - tumido
   - durandom
   - goern
-
+emeritus_approvers:
+  - 4n4nd  # jun 2022
+  - HumairAK   # dec 2022
+  - tumido  # april 2023
 reviewers:
-  - 4n4nd
-  - anishasthana
   - harshad16
-  - hemajv
-  - HumairAK
-  - tumido
-  - larsks

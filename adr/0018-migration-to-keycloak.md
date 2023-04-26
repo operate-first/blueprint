@@ -1,8 +1,8 @@
 # Authentication migration to Keycloak
 
-* Status: accepted
-* Deciders: tumido
-* Date: 2021-07-14
+* Status: deprecated, no-longer-relevant
+* Deciders: goern
+* Date: 2023-04-25
 
 Technical Story: https://github.com/orgs/operate-first/projects/24
 
